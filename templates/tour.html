@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% set from = departures[tour.departure][0].lower() + departures[tour.departure][1:] %}
+
+{% block main %}
+  <main class="container">
+    <section class="mt-3 pb-5">
+      <h1 class="display-3 mt-4">{{ tour.title }} {{ tour.stars|int * "★" }}</h1>
+      <!-- HERO -->
+      <p class="lead">{{ tour.country }} {{ from }} на {{ tour.nights }} ночей</p>
+      <img src="{{ tour.picture }}" class="w-75" alt="">
+      <p class="my-4 w-75">{{ tour.description }}</p>
+      <a href="javascript:alert('Эх, мечты-мечты!')" class="btn btn-success btn-lg">Купить тур за {{ tour.price }}₽</a>
+    </section>
+  </main>
+{% endblock %}
