@@ -7,7 +7,7 @@
 {% block main %}
   <main class="container mt-3">
     <h1 class="display-5 mt-4">Летим {{ from }}</h1>
-    <p class="mb-4">Найдено {{ tours|length }} туров, от {{ (sorted_by_price|first).price }}₽ до {{ (sorted_by_price|last).price }}₽ и от {{ (sorted_by_nights|first).nights }} ночей до {{ (sorted_by_nights|last).nights }} ночей</p>
+    <p class="mb-4">Найдено {{ tours|length }} туров, от {{ price_min }}₽ до {{ price_max }}₽ и от {{ nights_min }} ночей до {{ nights_max }} ночей</p>
     <!-- CARDS -->
     <div class="row mt-5">
       {% for id, tour in tours.items() %}

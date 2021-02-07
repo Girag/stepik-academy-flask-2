@@ -22,13 +22,27 @@ def render_main():
 @app.route("/departures/<departure>/")
 def render_departures(departure):
     tours = dict(filter(lambda tour: tour[1]["departure"] == departure, data.tours.items()))
+    price_min, price_max, nights_min, nights_max = float("inf"), float("-inf"), float("inf"), float("-inf")
+    for tour in tours.values():
+        if tour["price"] < price_min:
+            price_min = tour["price"]
+        if tour["price"] > price_max:
+            price_max = tour["price"]
+        if tour["nights"] < nights_min:
+            nights_min = tour["nights"]
+        if tour["nights"] > nights_max:
+            nights_max = tour["nights"]
+
     if tours:
         return render_template("departure.html", departure=departure,
                                title=data.title,
                                departures=data.departures,
-                               tours=tours)
-    else:
-        abort(404)
+                               tours=tours,
+                               price_min=price_min,
+                               price_max=price_max,
+                               nights_min=nights_min,
+                               nights_max=nights_max)
+    abort(404)
 
 
 @app.route("/tours/<int:id>/")
