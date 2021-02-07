@@ -10,15 +10,15 @@
 <body>
   <header class="container mt-3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Stepik Travel</a>
+      <a class="navbar-brand" href="/">{{ title }}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           {% for id, title in departures.items() %}
-          <li class="nav-item {% if request.path == '/departures/' + id + '/' %}active{% endif %}">
-            <a class="nav-link" href="/departures/{{ id }}/">{{ title }}</a>
+          <li class="nav-item {% if request.path == url_for('render_departures', departure=id) %}active{% endif %}">
+            <a class="nav-link" href="{{ url_for('render_departures', departure=id) }}">{{ title }}</a>
           </li>
           {% endfor %}
         </ul>

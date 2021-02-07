@@ -12,7 +12,6 @@ def render_not_found(_):
 
 @app.route("/")
 def render_main():
-    # return "Здесь будет главная"
     return render_template("index.html", tours=data.tours,
                            title=data.title,
                            subtitle=data.subtitle,
