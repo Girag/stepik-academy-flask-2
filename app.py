@@ -12,7 +12,7 @@ def render_not_found(_):
 
 @app.route("/")
 def render_main():
-    tours = {k:v for k, v in data.tours.items() if k in range(1, 7)}
+    tours = {k: v for k, v in data.tours.items() if k in range(1, 7)}
     return render_template("index.html", tours=tours,
                            title=data.title,
                            subtitle=data.subtitle,
