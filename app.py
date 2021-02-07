@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 
 @app.errorhandler(404)
-@app.errorhandler(KeyError)
 def render_not_found(_):
     return "Ничего не нашлось! Вот неудача, отправляйтесь на главную!", 404
 
@@ -48,9 +47,11 @@ def render_departures(departure):
 
 @app.route("/tours/<int:id>/")
 def render_tours(id):
-    return render_template("tour.html", tour=data.tours[id],
-                           title=data.title,
-                           departures=data.departures)
+    if id in data.tours:
+        return render_template("tour.html", tour=data.tours[id],
+                               title=data.title,
+                               departures=data.departures)
+    abort(404)
 
 
 if __name__ == '__main__':
