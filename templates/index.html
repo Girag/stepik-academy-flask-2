@@ -10,7 +10,7 @@
     </section>
     <!-- CARDS -->
     <div class="row mt-5">
-      {% for id in range(1, 7) %}
+      {% for id in tours %}
       <div class="col-4">
         <div class="card mb-4">
           <div class="embed-responsive embed-responsive-16by9">
@@ -19,7 +19,7 @@
           <div class="card-body">
             <h2 class="h5 card-title">{{ tours[id]["title"] }}</h2>
             <p class="card-text">{{ tours[id]["description"]|truncate(130) }}</p>
-            <a href="/tours/{{ id }}/" class="btn btn-sm btn-primary">Подробнее</a>
+            <a href="{{ url_for('render_tours', id=id) }}" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>
       </div>
